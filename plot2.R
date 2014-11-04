@@ -15,11 +15,11 @@ colnames(power.data) <- unlist(strsplit(power.lines[1], ";"))
 power.data$datetime <- strptime(paste(power.data$Date, power.data$Time), 
                                 format="%d/%m/%Y %H:%M:%S")
 
-# Construct plot 1
-library(xts)
-power.ts <- xts(power.data$Global_active_power, power.data$datetime)
+# Construct plot 2
 
-png("plot1.png", 480, 480)
-
-
+png("plot2.png", 480, 480)
+plot(power.data$Global_active_power, type="l",
+     xlab="", ylab="Global Active Power (kilowatts)", xaxt="n"
+     )
+axis(1, c(0, 1440, 2880), labels=c("Thu", "Fri", "Sat"))
 dev.off()
